@@ -1,3 +1,3 @@
 export class CreateCompanhiaDto {
-    nome: string;
+  nome: string;
 }
