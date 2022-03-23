@@ -4,5 +4,12 @@ export class CreateFuncionarioDto {
   nome: string;
   hashSenha: string;
   email: string;
-  companhiaId: Companhia;
+  companhia: number;
+}
+
+export class SaveFuncionarioDto {
+  nome: string;
+  hashSenha: string;
+  email: string;
+  companhia: Companhia;
 }
