@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
-import { Companhia } from "./CompanhiaEntity";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { Passageiro } from "./PassageiroEntity";
 import { Viagem } from "./ViagemEntity";
 

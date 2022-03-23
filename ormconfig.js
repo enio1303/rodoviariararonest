@@ -9,11 +9,11 @@ module.exports = {
   "logging": false,
   "entities": [
     process.env.NODE_ENV === 'development' ?
-      "src/models/**/*Entity.ts" :
+      "src/models/**/*Entity.js" :
       "dist/models/**/*Entity.js"
   ],
-  "migrations": ["src/migration/*.ts"],
-  "subscribers": ["src/subscriber/**/*.ts"],
+  "migrations": ["src/migration/*.js"],
+  "subscribers": ["src/subscriber/**/*.js"],
   "cli": {
     "entitiesDir": "src/models",
     "migrationsDir": "src/migration",
