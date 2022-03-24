@@ -12,6 +12,7 @@ import { Viagem } from './models/ViagemEntity';
 import { Bilhete } from './models/BilheteEntity';
 import { Passageiro } from './models/PassageiroEntity';
 import { FuncionarioModule } from './funcionario/funcionario.module';
+import { OnibusModule } from './onibus/onibus.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { FuncionarioModule } from './funcionario/funcionario.module';
     UsersModule,
     CompanhiaModule,
     FuncionarioModule,
+    OnibusModule,
   ],
   controllers: [AppController],
   providers: [AppService],

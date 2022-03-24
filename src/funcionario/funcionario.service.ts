@@ -54,7 +54,7 @@ export class FuncionarioService {
       email: createFuncionarioDto.email,
       hashSenha: createFuncionarioDto.hashSenha,
       companhia: companiaExiste,
-    }
+    };
     return this.funcionariosRepository.save(saveFuncionario);
   }
 
