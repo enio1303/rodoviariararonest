@@ -1,9 +1,13 @@
 import { Companhia } from '../../models/CompanhiaEntity';
+import { IsInt, IsString } from 'class-validator';
 
 export class CreateOnibusDto {
-  nome: string;
-  assentos: number;
-  companhia: number;
+  @IsString()
+  readonly nome: string;
+  @IsInt()
+  readonly assentos: number;
+  @IsInt()
+  readonly companhia: number;
 }
 
 export class SaveOnibusDto {
