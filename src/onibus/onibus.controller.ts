@@ -10,7 +10,8 @@ import {
 import { OnibusService } from './onibus.service';
 import { CreateOnibusDto } from './dto/create-onibus.dto';
 import { UpdateOnibusDto } from './dto/update-onibus.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Onibus } from '../models/OnibusEntity';
 
 @ApiTags('onibus')
 @Controller('onibus')
@@ -18,7 +19,9 @@ export class OnibusController {
   constructor(private readonly onibusService: OnibusService) {}
 
   @Post()
-  create(@Body() createOnibusDto: CreateOnibusDto) {
+  @ApiOperation({ summary: 'Create Onibus' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  async create(@Body() createOnibusDto: CreateOnibusDto): Promise<Onibus> {
     return this.onibusService.create(createOnibusDto);
   }
 
@@ -28,8 +31,18 @@ export class OnibusController {
   }
 
   @Get(':id')
+  @ApiResponse({
+    status: 200,
+    description: 'The found record',
+    type: Onibus,
+  })
   findOne(@Param('id') id: string) {
     return this.onibusService.findOne(+id);
+  }
+
+  @Get('companhia/:id')
+  find(@Param('id') id: string) {
+    return this.onibusService.findByCompanhia(+id);
   }
 
   @Patch(':id')

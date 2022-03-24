@@ -14,6 +14,13 @@ export class OnibusService {
     private companhiaService: CompanhiaService,
   ) {}
 
+  findByCompanhia(idCompanhia: number) {
+    return this.onibusRepository.find({
+      where: { companhia: { id: idCompanhia } },
+      relations: ['companhia'],
+    });
+  }
+
   async create(createOnibusDto: CreateOnibusDto) {
     if (!createOnibusDto.companhia) {
       throw new HttpException(
