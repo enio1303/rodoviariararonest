@@ -5,27 +5,14 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CompanhiaModule } from './companhia/companhia.module';
-import { Companhia } from './models/CompanhiaEntity';
-import { Funcionario } from './models/FuncionarioEntity';
-import { Onibus } from './models/OnibusEntity';
-import { Viagem } from './models/ViagemEntity';
-import { Bilhete } from './models/BilheteEntity';
-import { Passageiro } from './models/PassageiroEntity';
 import { FuncionarioModule } from './funcionario/funcionario.module';
 import { OnibusModule } from './onibus/onibus.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'teste',
-      password: 'teste',
-      database: 'rodoviariararo',
-      entities: [Companhia, Funcionario, Onibus, Viagem, Bilhete, Passageiro],
-      synchronize: true,
-    }),
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRoot(),
     AuthModule,
     UsersModule,
     CompanhiaModule,

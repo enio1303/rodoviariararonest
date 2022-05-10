@@ -19,6 +19,7 @@ export class FuncionarioService {
 
   findByCompanhia(idCompanhia: number) {
     return this.funcionariosRepository.find({
+      select: ['id', 'nome', 'email', 'companhia'],
       where: { companhia: { id: idCompanhia } },
       relations: ['companhia'],
     });
@@ -60,6 +61,7 @@ export class FuncionarioService {
 
   findAll() {
     return this.funcionariosRepository.find({
+      select: ['id', 'nome', 'email', 'companhia'],
       where: {},
       relations: ['companhia'],
     });
@@ -67,6 +69,7 @@ export class FuncionarioService {
 
   findOne(id: number) {
     return this.funcionariosRepository.findOne({
+      select: ['id', 'nome', 'email', 'companhia'],
       where: { id: id },
       relations: ['companhia'],
     });

@@ -12,7 +12,7 @@ module.exports = {
       "src/models/**/*Entity.js" :
       "dist/models/**/*Entity.js"
   ],
-  "migrations": ["src/migration/*.js"],
+  "migrations": ["dist/migration/*.js"],
   "subscribers": ["src/subscriber/**/*.js"],
   "cli": {
     "entitiesDir": "src/models",
