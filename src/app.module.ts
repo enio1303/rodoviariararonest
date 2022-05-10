@@ -8,6 +8,7 @@ import { CompanhiaModule } from './companhia/companhia.module';
 import { FuncionarioModule } from './funcionario/funcionario.module';
 import { OnibusModule } from './onibus/onibus.module';
 import { ConfigModule } from '@nestjs/config';
+import { PassageiroModule } from './passageiro/passageiro.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigModule } from '@nestjs/config';
     CompanhiaModule,
     FuncionarioModule,
     OnibusModule,
+    PassageiroModule,
   ],
   controllers: [AppController],
   providers: [AppService],
