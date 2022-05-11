@@ -26,29 +26,9 @@ export class FuncionarioService {
   }
 
   async create(createFuncionarioDto: CreateFuncionarioDto) {
-    if (!createFuncionarioDto.companhia) {
-      throw new HttpException(
-        {
-          status: HttpStatus.FORBIDDEN,
-          error: 'Campo >companhia< deve ser definido!',
-        },
-        HttpStatus.FORBIDDEN,
-      );
-    }
-
     const companiaExiste = await this.companhiaService.findOne(
-      createFuncionarioDto.companhia.toString(),
+      createFuncionarioDto.companhia,
     );
-
-    if (!companiaExiste) {
-      throw new HttpException(
-        {
-          status: HttpStatus.FORBIDDEN,
-          error: 'Companhia id não encontrada!',
-        },
-        HttpStatus.FORBIDDEN,
-      );
-    }
 
     const saveFuncionario: SaveFuncionarioDto = {
       nome: createFuncionarioDto.nome,
