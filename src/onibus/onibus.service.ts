@@ -22,29 +22,9 @@ export class OnibusService {
   }
 
   async create(createOnibusDto: CreateOnibusDto) {
-    if (!createOnibusDto.companhia) {
-      throw new HttpException(
-        {
-          status: HttpStatus.FORBIDDEN,
-          error: 'Campo >companhia< deve ser definido!',
-        },
-        HttpStatus.FORBIDDEN,
-      );
-    }
-
     const companiaExiste = await this.companhiaService.findOne(
-      createOnibusDto.companhia.toString(),
+      createOnibusDto.companhia,
     );
-
-    if (!companiaExiste) {
-      throw new HttpException(
-        {
-          status: HttpStatus.FORBIDDEN,
-          error: 'Companhia id não encontrada!',
-        },
-        HttpStatus.FORBIDDEN,
-      );
-    }
 
     const saveOnibus: SaveOnibusDto = {
       nome: createOnibusDto.nome,
@@ -54,22 +34,34 @@ export class OnibusService {
     return this.onibusRepository.save(saveOnibus);
   }
 
-  findAll() {
-    return this.onibusRepository.find({
+  async findAll() {
+    return await this.onibusRepository.find({
       where: {},
       relations: ['companhia'],
     });
   }
 
-  findOne(id: number) {
-    return this.onibusRepository.findOne({
+  async findOne(id: number) {
+    const onibusExiste = await this.onibusRepository.findOne({
       where: { id: id },
       relations: ['companhia'],
     });
+
+    if (!onibusExiste) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: 'Onibus id não encontrada!',
+        },
+        HttpStatus.FORBIDDEN,
+      );
+    }
+
+    return onibusExiste;
   }
 
-  update(id: number, updateOnibusDto: UpdateOnibusDto) {
-    return this.onibusRepository.update(id, updateOnibusDto);
+  async update(id: number, updateOnibusDto: UpdateOnibusDto) {
+    return await this.onibusRepository.update(id, updateOnibusDto);
   }
 
   async remove(id: number) {

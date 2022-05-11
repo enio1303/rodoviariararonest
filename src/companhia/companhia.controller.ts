@@ -42,7 +42,7 @@ export class CompanhiaController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.companhiaService.findOne(id);
+    return this.companhiaService.findOne(+id);
   }
 
   @Patch(':id')
@@ -50,11 +50,11 @@ export class CompanhiaController {
     @Param('id') id: string,
     @Body() updateCompanhiaDto: UpdateCompanhiaDto,
   ) {
-    return this.companhiaService.update(id, updateCompanhiaDto);
+    return this.companhiaService.update(+id, updateCompanhiaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.companhiaService.remove(id);
+    return this.companhiaService.remove(+id);
   }
 }

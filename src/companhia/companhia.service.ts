@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Companhia } from 'src/models/CompanhiaEntity';
 import { CreateCompanhiaDto } from './dto/create-companhia.dto';
@@ -20,15 +20,25 @@ export class CompanhiaService {
     return this.companhiasRepository.find();
   }
 
-  findOne(id: string): Promise<Companhia> {
-    return this.companhiasRepository.findOne(id);
+  async findOne(id: number): Promise<Companhia> {
+    const companiaExiste = await this.companhiasRepository.findOne(id);
+    if (!companiaExiste) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: 'Companhia id não encontrada!',
+        },
+        HttpStatus.FORBIDDEN,
+      );
+    }
+    return companiaExiste;
   }
 
-  async remove(id: string): Promise<void> {
+  async remove(id: number): Promise<void> {
     await this.companhiasRepository.delete(id);
   }
 
-  update(id: string, updateCompanhiaDto: UpdateCompanhiaDto) {
+  update(id: number, updateCompanhiaDto: UpdateCompanhiaDto) {
     return `This action updates a #${id} companhia`;
   }
 }

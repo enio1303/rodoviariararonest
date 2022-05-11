@@ -9,5 +9,6 @@ import { CompanhiaModule } from 'src/companhia/companhia.module';
   imports: [TypeOrmModule.forFeature([Onibus]), CompanhiaModule],
   controllers: [OnibusController],
   providers: [OnibusService],
+  exports: [OnibusService],
 })
 export class OnibusModule {}
