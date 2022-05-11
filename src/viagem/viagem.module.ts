@@ -10,5 +10,6 @@ import { OnibusModule } from '../onibus/onibus.module';
   imports: [TypeOrmModule.forFeature([Viagem]), CompanhiaModule, OnibusModule],
   controllers: [ViagemController],
   providers: [ViagemService],
+  exports: [ViagemService],
 })
 export class ViagemModule {}
