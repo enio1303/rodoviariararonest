@@ -46,11 +46,21 @@ export class ViagemService {
     });
   }
 
-  findOne(id: number) {
-    return this.viagemRepository.find({
+  async findOne(id: number) {
+    const viagemExiste = await this.viagemRepository.findOne({
       where: { id: id },
       relations: ['companhia', 'onibus'],
     });
+    if (!viagemExiste) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: 'Viagem id não encontrada!',
+        },
+        HttpStatus.FORBIDDEN,
+      );
+    }
+    return viagemExiste;
   }
 
   update(id: number, updateViagemDto: SaveViagemDto) {

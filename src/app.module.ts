@@ -10,6 +10,7 @@ import { OnibusModule } from './onibus/onibus.module';
 import { ConfigModule } from '@nestjs/config';
 import { PassageiroModule } from './passageiro/passageiro.module';
 import { ViagemModule } from './viagem/viagem.module';
+import { BilheteModule } from './bilhete/bilhete.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ViagemModule } from './viagem/viagem.module';
     OnibusModule,
     PassageiroModule,
     ViagemModule,
+    BilheteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
